@@ -1,4 +1,4 @@
-﻿using Penguin.Extensions.String;
+﻿using Penguin.Extensions.Strings;
 using Penguin.Net.Telnet;
 using Penguin.Net.Whois.Objects;
 using Penguin.Services.Core;
@@ -14,8 +14,6 @@ namespace Penguin.Net.Whois
     /// </summary>
     public class WhoisClient : Service
     {
-        #region Methods
-
         /// <summary>
         /// The query to send to the server chain. Likely wont work reliably with flags.
         /// </summary>
@@ -172,14 +170,8 @@ namespace Penguin.Net.Whois
             return queryResponse;
         }
 
-        #endregion Methods
-
-        #region Fields
-
         private const string REFERRAL_SERVER = "ReferralServer: ";
 
         private static HashSet<string> discoveredServers = new HashSet<string>();
-
-        #endregion Fields
     }
 }
