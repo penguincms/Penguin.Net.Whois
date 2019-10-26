@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Penguin.Net.Whois.Local</name>
+        <name>Penguin.Net.Whois</name>
     </assembly>
     <members>
         <member name="T:Penguin.Net.Whois.Objects.QueryResponse">
