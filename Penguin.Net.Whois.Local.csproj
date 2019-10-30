@@ -4,6 +4,8 @@
     <PackageProjectUrl>https://github.com/penguincms/Penguin.Net.Whois</PackageProjectUrl>
     <Description>A thin experimental Whois client intended for use with analytics and security</Description>
     <Version>1.0.4</Version>
+    <AssemblyName>Penguin.Net.Whois</AssemblyName>
+    <RootNamespace>Penguin.Net.Whois</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
