@@ -11,8 +11,8 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Penguin.Services.Core" Version="1.0.4" />
-    <PackageReference Include="Penguin.Net.Telnet" Version="5.0.1" />
-    <PackageReference Include="Penguin.Extensions.String" Version="5.0.1" />
+    <PackageReference Include="Penguin.Net.Telnet" Version="5.0.1-TA4HCPV" />
+    <PackageReference Include="Penguin.Extensions.String" Version="5.0.1-TA4HCPV" />
   </ItemGroup>
   <Import Project="Penguin.Projects.Shared\Penguin.Projects.Shared.csproj" />
 </Project>
