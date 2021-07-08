@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageProjectUrl>https://github.com/penguincms/Penguin.Net.Whois</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/PenguinCMS/Penguin.Net.Whois</PackageProjectUrl>
     <Description>A thin experimental Whois client intended for use with analytics and security</Description>
     <Version>5.0.5</Version>
     <AssemblyName>Penguin.Net.Whois</AssemblyName>
@@ -11,8 +11,8 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Penguin.Services.Core" Version="1.0.4" />
-    <PackageReference Include="Penguin.Net.Telnet" Version="5.0.4" />
-    <PackageReference Include="Penguin.Extensions.String" Version="5.0.6-TAEO1KM" />
+    <PackageReference Include="Penguin.Net.Telnet" Version="5.0.6-TAHULSY" />
+    <PackageReference Include="Penguin.Extensions.String" Version="5.0.6-TAHULSY" />
   </ItemGroup>
   <Import Project="Penguin.Projects.Shared\Penguin.Projects.Shared.csproj" />
 </Project>
