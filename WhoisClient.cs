@@ -1,4 +1,4 @@
-﻿using Penguin.Extensions.Strings;
+﻿using Penguin.Extensions.String;
 using Penguin.Net.Telnet;
 using Penguin.Net.Whois.Objects;
 using Penguin.Services.Core;
@@ -94,12 +94,13 @@ namespace Penguin.Net.Whois
 
                 if (m.Success)
                 {
-                    WhoisResponse thisResponse = new WhoisResponse();
-
-                    thisResponse.OrgName = m.Groups[1].Value;
-                    thisResponse.NetName = m.Groups[2].Value;
-                    thisResponse.IPFrom = m.Groups[4].Value;
-                    thisResponse.IPTo = m.Groups[5].Value;
+                    WhoisResponse thisResponse = new WhoisResponse
+                    {
+                        OrgName = m.Groups[1].Value,
+                        NetName = m.Groups[2].Value,
+                        IPFrom = m.Groups[4].Value,
+                        IPTo = m.Groups[5].Value
+                    };
 
                     queryResponse.WhoisResponses.Add(thisResponse);
                     continue;
