@@ -42,7 +42,7 @@ namespace Penguin.Net.Whois
 
                 try
                 {
-                    if (whoisServer.Contains(":"))
+                    if (whoisServer.Contains(':'))
                     {
                         client = new TelnetClient(whoisServer.To(":"), int.Parse(whoisServer.From(":")));
                     }
