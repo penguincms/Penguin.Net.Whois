@@ -10,7 +10,7 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Penguin.Services.Core" Version="1.0.4" />
     <PackageReference Include="Penguin.Net.Telnet" Version="5.0.6-TB7ZBM0" />
     <PackageReference Include="Penguin.Extensions.String" Version="5.0.6-TB7ZBM0" />
