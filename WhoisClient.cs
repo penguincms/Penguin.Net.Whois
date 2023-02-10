@@ -21,7 +21,7 @@ namespace Penguin.Net.Whois
         /// <returns>A collection of data from the server chain</returns>
         public QueryResponse Query(string QueryString)
         {
-            QueryResponse queryResponse = new QueryResponse();
+            QueryResponse queryResponse = new();
 
             string whoisServer = "whois.arin.net";
 
@@ -33,7 +33,7 @@ namespace Penguin.Net.Whois
             {
                 if (!discoveredServers.Contains(whoisServer))
                 {
-                    discoveredServers.Add(whoisServer);
+                    _ = discoveredServers.Add(whoisServer);
                 }
 
                 requery = false;
@@ -42,20 +42,15 @@ namespace Penguin.Net.Whois
 
                 try
                 {
-                    if (whoisServer.Contains(':'))
-                    {
-                        client = new TelnetClient(whoisServer.To(":"), int.Parse(whoisServer.From(":")));
-                    }
-                    else
-                    {
-                        client = new TelnetClient(whoisServer, 43);
-                    }
+                    client = whoisServer.Contains(':')
+                        ? new TelnetClient(whoisServer.To(":"), int.Parse(whoisServer.From(":")))
+                        : new TelnetClient(whoisServer, 43);
 
                     response = client.Send(QueryString);
                 }
                 catch (Exception ex)
                 {
-                    this.Error?.Invoke(ex);
+                    Error?.Invoke(ex);
                     return queryResponse;
                 }
 
@@ -79,7 +74,7 @@ namespace Penguin.Net.Whois
                 }
             } while (requery);
 
-            WhoisResponse whoisResponse = new WhoisResponse();
+            WhoisResponse whoisResponse = new();
 
             foreach (string s in response.Split('\n'))
             {
@@ -94,7 +89,7 @@ namespace Penguin.Net.Whois
 
                 if (m.Success)
                 {
-                    WhoisResponse thisResponse = new WhoisResponse
+                    WhoisResponse thisResponse = new()
                     {
                         OrgName = m.Groups[1].Value,
                         NetName = m.Groups[2].Value,
@@ -106,7 +101,7 @@ namespace Penguin.Net.Whois
                     continue;
                 }
 
-                if (!toParse.Contains(":"))
+                if (!toParse.Contains(':'))
                 {
                     continue;
                 }
@@ -116,7 +111,7 @@ namespace Penguin.Net.Whois
                     toParse = toParse.From(":");
                 }
 
-                string key = toParse.To(":").Trim().ToLower();
+                string key = toParse.To(":").Trim().ToLower(System.Globalization.CultureInfo.CurrentCulture);
                 string Value = toParse.From(":").Trim();
 
                 //wayport
@@ -128,18 +123,16 @@ namespace Penguin.Net.Whois
                     case "ip-network-block":
                     case "cidr":
                     case "ip-network":
-                        if (Value.Contains("-"))
+                        if (Value.Contains('-'))
                         {
                             whoisResponse.IPFrom = Value.To("-").Trim();
                             whoisResponse.IPTo = Value.From("-").Trim();
                         }
-                        else if (Value.Contains("/"))
-                        {
-                            whoisResponse.CIDR = string.IsNullOrWhiteSpace(whoisResponse.Country) ? Value : $"{Value}, {whoisResponse.CIDR}";
-                        }
                         else
                         {
-                            throw new Exception("Invalid network");
+                            whoisResponse.CIDR = Value.Contains('/')
+                                ? string.IsNullOrWhiteSpace(whoisResponse.Country) ? Value : $"{Value}, {whoisResponse.CIDR}"
+                                : throw new Exception("Invalid network");
                         }
 
                         break;
@@ -173,6 +166,6 @@ namespace Penguin.Net.Whois
 
         private const string REFERRAL_SERVER = "ReferralServer: ";
 
-        private static HashSet<string> discoveredServers = new HashSet<string>();
+        private static readonly HashSet<string> discoveredServers = new();
     }
 }
